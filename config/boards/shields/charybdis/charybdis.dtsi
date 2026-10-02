@@ -1,6 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
-#include <physical_layouts.dtsi>
+#include "physical_layouts.dtsi"  /* Changed to quotes for local file */
 
 / {
     charybdis_layout: charybdis_layout {
@@ -70,15 +70,15 @@
             , <&key_physical_attrs 100 100  800  400       0     0     0>
 
             , <&key_physical_attrs 100 100  400  500       0     0     0>
-            , <&key_physical_attrs 100 100  500  500       0     0     0>  /* Corrected attributes */
-            , <&key_physical_attrs 100 100  700  500       0     0     0>  /* Corrected attributes */
+            , <&key_physical_attrs 100 100  500  500       0     0     0>
+            , <&key_physical_attrs 100 100  700  500       0     0     0>
             ;
     };
 
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &charybdis_layout;
-        zmk,underglow = &led_strip;
+        /* zmk,underglow = &led_strip;  <-- Commented out to prevent "undefined label" error */
     };
 
     default_transform: keymap_transform_0 {
@@ -101,6 +101,11 @@
         label = "KSCAN";
 
         diode-direction = "col2row";
+        
+        /* WARNING: col-gpios are missing here. 
+           They must be defined in your charybdis_left.overlay 
+           or charybdis_right.overlay for this to work. */
+           
         row-gpios
             = <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
