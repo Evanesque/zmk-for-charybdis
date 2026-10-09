@@ -9,16 +9,6 @@
     quick-tap-ms = <150>;
 };
 
-#ifdef SHIELD_CHARYBDIS_RIGHT
-/ {
-    /* The DYA input processor block wrapper */
-    dya_studio_input_processor: dya_studio_input_processor {
-        compatible = "zmk,studio-input-processor";
-        device = <&trackball>;
-    };
-};
-#endif
-
 / {
     keymap {
         compatible = "zmk,keymap";
