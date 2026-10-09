@@ -1,39 +1,23 @@
-on: [push, pull_request, workflow_dispatch]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    name: Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Init west workspace
-        run: west init -l config
-
-      - name: Update west workspace
-        run: west update
-
-      - name: Export Zephyr
-        run: west zephyr-export
-
-      - name: Build charybdis left
-        run: west build -s app -b nice_nano_v2 -d build/left -- -DSHIELD=charybdis_left -DKEYMAP_EXTRAS_DIR=config/extras
-
-      - name: Build charybdis right
-        run: west build -s app -b nice_nano_v2 -d build/right -- -DSHIELD=charybdis_right -DKEYMAP_EXTRAS_DIR=config/extras
-
-      - name: Create artifact directory
-        run: |
-          mkdir -p build/artifacts
-          cp build/left/zephyr/zmk.uf2 build/artifacts/charybdis_left-nice_nano_v2-zmk.uf2
-          cp build/right/zephyr/zmk.uf2 build/artifacts/charybdis_right-nice_nano_v2-zmk.uf2
-
-      - name: Archive artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: build/artifacts
+# This file generates the GitHub Actions matrix
+# For simple board + shield combinations, add them
+# to the top level board and shield arrays, for more
+# control, add individual board + shield combinations to
+# the `include` property, e.g:
+#
+# board: [ "nice_nano_v2" ]
+# shield: [ "corne_left", "corne_right" ]
+# include:
+#   - board: bdn9_rev2
+#   - board: nice_nano_v2
+#     shield: reviung41
+#
+---
+include:
+  - board: nice_nano_v2
+    shield: charybdis_left
+  - board: nice_nano_v2
+    shield: charybdis_right
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: nice_nano_v2
+    shield: settings_reset
