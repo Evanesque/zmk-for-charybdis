@@ -4,13 +4,29 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: DoctorWangWang
       url-base: https://github.com/DoctorWangWang
+    # 1. ADDED: Points the compiler to cormoran's repositories
+    - name: cormoran
+      url-base: https://github.com
   projects:
+    # 2. SWAPPED: Redirects 'zmk' from zmkfirmware to cormoran's DYA branch
     - name: zmk
-      remote: zmkfirmware
-      revision: v0.3
+      remote: cormoran
+      revision: v0.3+custom-studio-protocol
       import: app/west.yml
+      
+    # 3. KEPT: Retains your existing trackball driver
     - name: zmk-pmw3610-driver
       remote: DoctorWangWang
+      revision: main
+
+    # 4. ADDED: Pulls the runtime trackball tuning sliders for DYA Studio
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+
+    # 5. ADDED: Pulls the system that saves your trackball tweaks between reboots
+    - name: zmk-feature-custom-settings
+      remote: cormoran
       revision: main
       
   self:
