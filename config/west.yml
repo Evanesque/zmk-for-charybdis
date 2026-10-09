@@ -10,6 +10,7 @@ manifest:
     # FIXED: Added explicit "remote: cormoran" down here so it fetches from the right URL
     - name: zmk-west-commands
       remote: cormoran
+      import: true
       revision: v1.0.0
       
     - name: zmk
