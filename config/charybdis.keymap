@@ -10,6 +10,15 @@
 };
 
 / {
+    /* The DYA input processor block wrapper */
+    dya_studio_input_processor: dya_studio_input_processor {
+        compatible = "zmk,studio-input-processor";
+        device = <&trackball_sensor>; // This label must match your actual PMW3610 node name
+    };
+};
+
+
+/ {
     keymap {
         compatible = "zmk,keymap";
 
