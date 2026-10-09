@@ -4,38 +4,14 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: DoctorWangWang
       url-base: https://github.com/DoctorWangWang
-    - name: cormoran
-      url-base: https://github.com/cormoran
-    - name: qtrnmr
-      url-base: https://github.com/qtrnmr
-    - name: nanopb
-      url-base: https://github.com/nanopb
   projects:
-    - name: nanopb
-      remote: nanopb
-      revision: 0.4.7
-      path: modules/nanopb
-    - name: zmk-west-commands
-      remote: cormoran
-      import: true
-      revision: v1.0.0
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.3
+      import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: DoctorWangWang
       revision: main
-    - name: zmk
-      remote: cormoran
-      revision: v0.3-branch+dya
-      import: app/west.yml
-    - name: zmk-module-runtime-config
-      remote: qtrnmr
-      revision: main
-    # optional companions (trackball / encoder):
-    - name: zmk-module-runtime-input-processor
-      remote: cormoran
-      revision: zmk-v0.3.0.0
-    - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
-      revision: zmk-v0.3.0.0
       
   self:
     path: config
