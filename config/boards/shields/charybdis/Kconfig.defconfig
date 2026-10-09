@@ -12,9 +12,10 @@ if SHIELD_CHARYBDIS_LEFT || SHIELD_CHARYBDIS_RIGHT
 
 config ZMK_SPLIT
 	default y
-	
-endif
 
 if ZMK_STUDIO
 source "$(ZEPHYR_BASE)/../modules/zmk-module-runtime-input-processor/Kconfig"
 endif
+
+endif
+
