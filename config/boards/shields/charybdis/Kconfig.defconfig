@@ -15,3 +15,6 @@ config ZMK_SPLIT
 	
 endif
 
+if ZMK_STUDIO
+source "$(ZEPHYR_BASE)/../modules/zmk-module-runtime-input-processor/Kconfig"
+endif
