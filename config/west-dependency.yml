@@ -1,0 +1,24 @@
+manifest:
+  remotes:
+    - name: cormoran
+      url-base: https://github.com/cormoran
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+  projects:
+    - name: zmk-west-commands
+      remote: cormoran
+      import: true
+      revision: v1.0.0
+    - name: zmk
+      remote: zmkfirmware
+      import: app/west.yml
+      revision: main
+  - name: zmk-module-runtime-input-processor  # Runtime trackball config
+  - name: zmk-module-settings-rpc             # Settings exposed to DYA UI
+  - name: zmk-module-ble-management           # BLE profile management in UI
+  - name: zmk-module-battery-history          # Battery telemetry
+  - name: zmk-driver-pmw3610-with-custom-studio-rpc  # Trackball with Studio support
+  - name: zmk-feature-device-info             # Device info in UI
+  - name: zmk-feature-custom-settings         # Custom settings framework
+  - name: zmk-feature-runtime-macro           # Editable macros at runtime
+  - name: zmk-feature-runtime-combo           # Editable combos at runtime
