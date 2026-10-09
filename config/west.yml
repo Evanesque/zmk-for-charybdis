@@ -6,10 +6,15 @@ manifest:
       url-base: https://github.com/DoctorWangWang
     - name: cormoran
       url-base: https://github.com/cormoran
-    - name: qtrnmr          # the remote name is arbitrary — reference it in projects below
+    - name: qtrnmr
       url-base: https://github.com/qtrnmr
+    - name: nanopb
+      url-base: https://github.com/nanopb
   projects:
-    # FIXED: Added explicit "remote: cormoran" down here so it fetches from the right URL
+    - name: nanopb
+      remote: nanopb
+      revision: 0.4.7
+      path: modules/nanopb
     - name: zmk-west-commands
       remote: cormoran
       import: true
